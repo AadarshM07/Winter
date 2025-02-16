@@ -379,6 +379,7 @@ function DropDown() {
   const [isOpen, setIsOpen] = useState(false);
   const [state, setState] = useState(false);
   const dropdownRef = useRef(null);
+  const[click,setClick]=useState(true);
 
   const status = localStorage.getItem("LogedIn");
 
@@ -404,7 +405,10 @@ function DropDown() {
   return (
     <div>
       <button
-        onClick={() => setIsOpen(true)}
+       onClick={() => {
+        setIsOpen(true);
+        setClick(false);
+      }}
         className="text-black transition hover:text-gray-500/75"
       >
         <Menu size={35} />
