@@ -59,9 +59,11 @@ function Login({onClose}){
     if (response.status == 201 || response.status == 200){
       const data = await response.json();
       setSuss("User Authentication Sucessfull"); 
-      localStorage.setItem("LogedIn",true)
-      localStorage.setItem("UserName",data.name)   //storage
-      localStorage.setItem("Email",data.email)
+      if (typeof window !== "undefined") {
+        localStorage.setItem("LogedIn", "true");
+        localStorage.setItem("UserName", data.name);
+        localStorage.setItem("Email", data.email);
+      }
       setTimeout(() => {
         onClose();
       }, 2000);
@@ -304,7 +306,7 @@ function WriteReview({onClose,movie}){
   const [review, setReview] = useState("");
   const [alert, setAlert] = useState("");
   const [success, setSuccess] = useState("");
-  const username=localStorage.getItem("UserName");
+  const username = typeof window !== "undefined" ? localStorage.getItem("UserName") : null;
 
 
   
@@ -381,7 +383,6 @@ function DropDown() {
   const dropdownRef = useRef(null);
   const[click,setClick]=useState(true);
 
-  const status = localStorage.getItem("LogedIn");
 
   function handleLogout() {
     console.log("hi");
@@ -447,12 +448,15 @@ function DropDown() {
 
 
 function AccountStatus(){
-  if(localStorage.getItem("LogedIn")){
+  const isLoggedIn = typeof window !== "undefined" && localStorage.getItem("LogedIn");
+const username = typeof window !== "undefined" ? localStorage.getItem("UserName") : null;
+const email = typeof window !== "undefined" ? localStorage.getItem("Email") : null;
+  if(isLoggedIn){
     return(
       <div>
-        <p className="mx-1 text-black text-xs sm:text-sm  truncate">{localStorage.getItem("UserName")}</p>
-        <p className="mx-1 text-black text-xs sm:text-sm  truncate">{localStorage.getItem("Email")}</p>
-      </div>
+      <p className="mx-1 text-black text-xs sm:text-sm truncate">{username}</p>
+      <p className="mx-1 text-black text-xs sm:text-sm truncate">{email}</p>
+    </div>
     );}
   else{
     return(

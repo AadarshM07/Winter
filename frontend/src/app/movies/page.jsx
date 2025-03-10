@@ -1,7 +1,7 @@
 "use client";
 import "../globals.css";
 import Link from "next/link";
-import { AddMovies ,FetchMovies} from "../account";
+import { AddMovies } from "../account";
 import { useState } from "react";
 import { useEffect } from "react";
 
@@ -13,7 +13,7 @@ function Movies(props) {
     <div className=" mx-10 my-3 flex flex-row flex-wrap gap-6">
        
       {props.name.map((movie) => (
-        <Link href={`/movies/${movie.name}`}  className="relative overflow-hidden rounded-lg transition hover:shadow-[0_0_15px_5px_rgba(255,255,255,0.8)] w-[calc(50%-1.5rem)] sm:w-[calc(33.333%-1.5rem)] md:w-[calc(25%-1.5rem)] lg:w-[calc(16.666%-1.5rem)]"
+        <Link href={`/movies/${movie.name}`} key={movie.id} className="relative overflow-hidden rounded-lg transition hover:shadow-[0_0_15px_5px_rgba(255,255,255,0.8)] w-[calc(50%-1.5rem)] sm:w-[calc(33.333%-1.5rem)] md:w-[calc(25%-1.5rem)] lg:w-[calc(16.666%-1.5rem)]"
 >
           <img
             alt={movie.name}
@@ -72,7 +72,7 @@ export default function MoviesPage(){
 
 
 
-  const status=localStorage.getItem("LogedIn")
+  const status=typeof window !== "undefined" && localStorage.getItem("LogedIn");
 
   const handleClick = () => {
     if (status) {
@@ -166,4 +166,3 @@ export default function MoviesPage(){
 }
 
 export {Movies};
-export {moviesdata};

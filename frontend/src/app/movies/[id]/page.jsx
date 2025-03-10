@@ -4,7 +4,6 @@ import { useState,useEffect } from "react";
 import "../../globals.css";
 import Review from "@/app/review";
 import { WriteReview } from "../../account";
-import { useRouter } from "next/navigation";
 
 
 
@@ -62,7 +61,7 @@ export default function Dev({ params }) {
     }
   }
 
-  const status=localStorage.getItem("LogedIn")
+  const status=typeof window !== "undefined" && localStorage.getItem("LogedIn");
 
   const handleClick = () => {
     if (status) {

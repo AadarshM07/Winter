@@ -55,11 +55,11 @@ export default function Home() {
 
         </h2>
 
-        <p className="mt-4 text-gray-500 sm:text-xl dark:text-gray-400">
+        <div className="mt-4 text-gray-500 sm:text-xl dark:text-gray-400">
             <ShinyText text="Track films you’ve watched.
               Save those you want to see.
               Tell your friends what’s good." />
-        </p>
+        </div>
       </div >
       <dl className="mt-6 grid grid-cols-1 gap-4  place-content-center sm:grid-cols-2 lg:grid-cols-3">
         <div
